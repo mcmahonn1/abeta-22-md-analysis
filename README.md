@@ -1,15 +1,19 @@
 # Aβ16–22 Molecular Dynamics Structural Analysis
 
+
 ## Quick Start
 
 Clone and run the full analysis pipeline:
 
+```bash
 pip install -r requirements.txt
 python run_analysis.py
+```
 
-All figures and analysis outputs will be generated in the results/ directory.
+All figures and analysis outputs will be generated in the `results/` directory.
 
 ## Overview
+
 This project analyzes molecular dynamics (MD) simulations of the Aβ16–22 peptide under two conditions:
 
 - **System 1 (S1):** Peptide in explicit water  
