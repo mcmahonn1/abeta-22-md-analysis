@@ -1,1 +1,13 @@
 .Rhistory
+# Raw MD data should not be committed
+data/raw/
+
+# Big MD files (just in case)
+*.dcd
+*.xtc
+*.trr
+*.out
+*.log
+
+# R session history
+.Rhistory
