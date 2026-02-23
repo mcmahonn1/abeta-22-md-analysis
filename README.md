@@ -2,46 +2,81 @@
 
 ## Overview
 
-This project analyzes molecular dynamics (MD) simulations of the Aβ16–22 peptide in two environments:
+This project analyzes molecular dynamics (MD) simulations of the Aβ16–22 peptide under two conditions:
 
-- System 1: Peptide in water
-- System 2: Peptide in water with ibuprofen
+- **System 1 (S1):** Peptide in explicit water  
+- **System 2 (S2):** Peptide in water with ibuprofen  
 
-The goal is to quantify how ibuprofen affects peptide structural stability to determine if results obtained are similar to current studies.
+The objective is to quantify how ibuprofen influences peptide structural stability and compare structural behavior between systems using reproducible computational analysis to compare to current simlar research.
+
+All analysis is automated via Python scripts and organized into a reproducible computational pipeline.
+---
+
 ## Methods
 
-Secondary structure data was obtained using STRIDE via VMD and analyzed using Python.
+Secondary structure assignments were obtained using **STRIDE** via VMD from NAMD production trajectories.
 
-Key metrics computed:
+The following quantitative metrics were computed:
 
-- Helix fraction over time
-- Smoothed helix fraction trajectories
-- Average helix fraction across trajectories
-- Structural persistence time above threshold
-- Residue-level contact frequency with ibuprofen
-- Potential energy stability analysis
+- Helix fraction per frame (H, G, I codes)  
+- Smoothed helix fraction trajectories using moving average  
+- Average helix fraction across 5 independent trajectories  
+- Standard deviation and standard error across all frames  
+- Residue-level contact frequency with ibuprofen  
+- Potential energy stability analysis  
 
-## Tools Used
 
-- Python
-- NumPy
-- Matplotlib
-- Molecular Dynamics (NAMD)
-- VMD / STRIDE
+All scripts operate using a portable directory structure:
 
-## Key Scripts
+```
+data/raw/ → input STRIDE and contact files
+results/figures/ → generated plots
+results/tables/ → computed statistics
+```
 
-- `helix_fraction.py` – Computes helix fraction from secondary structure data
-- `Computeaveragehelicalfraction.py` – Calculates average helix fraction statistics
-- `PlottingRawvsSmooth.py` – Visualizes structural stability over time
-- `AvgNumberofContacts.py` – Computes residue–ibuprofen interaction frequencies
-- `Plotting potential energyvsSimSteps.py` – Analyzes simulation energy stability
+## Key Result: Average Smoothed Helix Fraction
+
+![Average Smoothed Helix Fraction](results/figures/avg_smoothed_helix_S1_vs_S2.png)
+
+This figure shows the time evolution of the average smoothed helix fraction across five trajectories for both systems.
+---
+## Project Structure
+```
+abeta-22-md-analysis
+│
+├── src/ # Python analysis scripts
+├── scripts/ # Supporting analysis scripts
+├── data/ # Raw and processed data (not tracked in GitHub)
+├── results/ # Generated figures and tables
+├── run_analysis.py # Master pipeline runner
+└── README.md
+```
+## Reproducibility
+
+To reproduce the analysis on your own machine:
+
+```bash
+pip install numpy matplotlib
+python run_analysis.py
+```
+
+Outputs will be generated automatically in the `results/` directory.
+## Technologies Used
+
+- Python  
+- NumPy  
+- Matplotlib  
+- NAMD molecular dynamics engine  
+- VMD visualization software  
+- STRIDE secondary structure analysis  
+- Scientific computing and data analysis workflows  
+---
 
 ## Scientific Significance
 
-This analysis quantifies how ibuprofen influences structural stability of amyloid peptides, which is relevant to understanding peptide aggregation and drug interactions.
+This computational analysis quantifies how ibuprofen influences structural stability of amyloid peptide segments. These methods are directly applicable to studying peptide aggregation, structural dynamics, and molecular interactions using molecular dynamics simulations.
 
+This project demonstrates reproducible computational biology analysis, scientific data processing, and quantitative structural analysis using Python.
 ## Author
 
 Nicholas McMahon  
-M.S. Computational Biology and Bioinformatics
